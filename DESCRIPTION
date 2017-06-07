@@ -1,0 +1,18 @@
+Package: dsAppModules
+Type: Package
+Title: Modules for building shiny apps for datasketch
+Version: 0.1.0
+Date: 2017-04-07
+Author: Juan Pablo Marin Diaz
+Maintainer: Juan Pablo Marin Diaz <jpmarindiaz@gmail.com>
+Description: Modules for building shiny apps for datasketch
+Depends:
+    R (>= 3.1.2),
+    tidyverse,
+    rhandsontable,
+    shiny,
+    shinyjs
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
