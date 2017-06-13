@@ -23,15 +23,15 @@ server <- function(input,output,session){
   })
 
   output$tableInputSection <- renderUI({
-    tableInputChoiceNames <- c(text(),
-      "File Upload",
-      "Sample")
+    choiceNames <- c(text(),
+                     "File Upload",
+                     "Sample")
     tagList(
-      tableInputUI("dataIn", tableInputChoices = c("pasted",
-                                                   "fileUpload",
-                                                   "sampleData"),
-                   tableInputChoiceNames = tableInputChoiceNames
-      )
+      tableInputUI("dataIn",
+                   choices = c("pasted",
+                               "fileUpload",
+                               "sampleData"),
+                   choiceNames = choiceNames)
     )
   })
 
