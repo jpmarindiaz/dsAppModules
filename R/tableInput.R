@@ -2,13 +2,12 @@
 #' @export
 tableInputUI <- function(id,
                          choices = c("pasted","fileUpload","sampleData"),
-                         choiceNames = NULL,
                          selected = "pasted"
 ){
   # UI
   ns <- NS(id)
-  choiceNames <-  choiceNames %||% choices
-  names(choices) <- choiceNames
+  #choiceNames <-  choiceNames %||% choices
+  #names(choices) <- choiceNames
   tagList(
     radioButtons(ns("tableInput"), "",
                  choices = choices, selected = selected),
@@ -17,10 +16,20 @@ tableInputUI <- function(id,
 }
 
 #' @export
-tableInput <- function(input,output,session, sampleFiles = c()){
+tableInput <- function(input,output,session,
+                       sampleFiles = NULL){
+
   output$tableInputControls <- renderUI({
+
+    # str(session)
+    # if(!exists(session))
+    #   stop("No session defined in server.")
+
     ns <- session$ns
-    message("\n\n",input$tableInput,"\n\n")
+
+    if(is.reactive(sampleFiles))
+      sampleFiles <- sampleFiles()
+
     if(input$tableInput == "sampleData"){
       if(!all(map_lgl(sampleFiles,file.exists)))
         stop("All Sample Files must exist")

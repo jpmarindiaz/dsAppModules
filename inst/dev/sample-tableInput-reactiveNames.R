@@ -11,13 +11,20 @@ ui <- fluidPage(
   verbatimTextOutput("debug")
 )
 
-server <- function(input,output,session){
+server <- function(input,output){
 
   text <- reactive(input$text)
 
+  sampleFiles <- list("sample1.csv","sample2.csv")
+  sampleFiles <- reactive({
+    l <- list("sample1.csv","sample2.csv")
+    names(l) <- c("F1",text())
+    l
+  })
+
   inputData <- callModule(tableInput, "dataIn",
-                          sampleFile =
-                            list("File1"="sample1.csv","Archivo2"="sample2.csv"))
+                          sampleFiles = sampleFiles
+  )
   output$debug <- renderPrint({
     inputData()
   })
@@ -28,10 +35,10 @@ server <- function(input,output,session){
                      "Sample")
     tagList(
       tableInputUI("dataIn",
-                   choices = c("pasted",
-                               "fileUpload",
-                               "sampleData"),
-                   choiceNames = choiceNames)
+                   choices = list("P1"="pasted",
+                                  "FU"="fileUpload",
+                                  "SAMPLE"="sampleData"),
+                   selected = "sampleData")
     )
   })
 
