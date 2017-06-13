@@ -1,14 +1,17 @@
 
 #' @export
 tableInputUI <- function(id,
-                         tableInputChoices =
-                           list("Copy & Paste"="pasted",
-                                "File Upload"="fileUpload",
-                                "Sample Data"="sampleData"),
+                         tableInputChoices = c("pasted","fileUpload","sampleData"),
+                         tableInputChoiceNames = NULL,
                          selected = "pasted"
 ){
   # UI
   ns <- NS(id)
+  if(!is.null(tableInputChoiceNames))
+    tableInputChoicesNames <- tableInputChoiceNames
+  else
+    tableInputChoicesNames <-  c("Copy & Paste","File Upload","Sample Data")
+  names(tableInputChoices) <- tableInputChoicesNames
   tagList(
     radioButtons(ns("tableInput"), "",
                  choices = tableInputChoices, selected = selected),
