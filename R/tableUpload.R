@@ -10,7 +10,7 @@ tableInputUI <- function(id,
   # UI
   ns <- NS(id)
   tagList(
-    radioButtons(ns("tableInput"), "upload Data",
+    radioButtons(ns("tableInput"), "",
                  choices = tableInputChoices, selected = selected),
     uiOutput(ns("tableInputControls"))
   )
