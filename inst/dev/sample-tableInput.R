@@ -6,13 +6,10 @@ library(tidyverse)
 
 
 ui <- fluidPage(
-  tableInputUI("dataIn", tableInputChoices = c("pasted",
-                                               "fileUpload",
-                                               "sampleData"),
-               tableInputChoiceNames = c("Copiar y pegar",
-                                          "File Upload",
-                                          "Sample")
-  ),
+  tableInputUI("dataIn", choices = list("Copiar & Pegar"="pasted",
+                                        "Cargar"="fileUpload",
+                                        "Muestra"="sampleData"),
+               selected = "pasted"),
   verbatimTextOutput("debug")
 )
 
