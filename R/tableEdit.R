@@ -3,11 +3,13 @@
 tableEditUI <- function(id){
   ns <- NS(id)
   tagList(
-    column(3,
-           uiOutput(ns("dataControls"))
-    ),
-    column(9,
-           rHandsontableOutput(ns("dataInputPreview"))
+    div(id=ns("tableEdit"), class = "tableEdit",
+        column(3, class = "tableEditCol",
+               uiOutput(ns("dataControls"))
+        ),
+        column(9, class = "tableEditCol",
+               rHandsontableOutput(ns("dataInputPreview"))
+        )
     )
   )
 }

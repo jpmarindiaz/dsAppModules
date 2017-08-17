@@ -9,9 +9,11 @@ tableInputUI <- function(id,
   #choiceNames <-  choiceNames %||% choices
   #names(choices) <- choiceNames
   tagList(
-    radioButtons(ns("tableInput"), "",
-                 choices = choices, selected = selected),
-    uiOutput(ns("tableInputControls"))
+    div(id=ns("tableInput"),class="tableInput",
+        radioButtons(ns("tableInput"), "",
+                     choices = choices, selected = selected),
+        uiOutput(ns("tableInputControls"))
+    )
   )
 }
 
