@@ -227,24 +227,24 @@
 
 
 
-ui <- fluidPage(
-  tableEditUI("tab0"),
-  tableInputUI("tab1")
-)
-
-server <- function(input, output, session) {
-  do0 <- callModule(tableInput, "tab1",
-                    sampleFile = list("lamuestra" = "~/ANA/trs2.csv"))
-  d01 <- callModule(tableEdit, "tab0", inputData = do0,
-                    addColSelect = TRUE,
-                    selectColsLabel = "Seleccione y organice columnas",
-                    filterRowsLabel = strong("Filtre en las columnas"),
-                    addRowFilters = TRUE,
-                    addCtypes = TRUE,
-                    ctypesLabel = strong("Seleccione el tipo de dato en la columnas"),
-                    cleanersLabel = strong("Busque y reemplaze en columnas"),
-                    addCleaners = TRUE)
-}
-
-shinyApp(ui, server)
+# ui <- fluidPage(
+#   tableEditUI("tab0"),
+#   tableInputUI("tab1")
+# )
 #
+# server <- function(input, output, session) {
+#   do0 <- callModule(tableInput, "tab1",
+#                     sampleFile = list("lamuestra" = "~/ANA/trs2.csv"))
+#   d01 <- callModule(tableEdit, "tab0", inputData = do0,
+#                     addColSelect = TRUE,
+#                     selectColsLabel = "Seleccione y organice columnas",
+#                     filterRowsLabel = strong("Filtre en las columnas"),
+#                     addRowFilters = TRUE,
+#                     addCtypes = TRUE,
+#                     ctypesLabel = strong("Seleccione el tipo de dato en la columnas"),
+#                     cleanersLabel = strong("Busque y reemplaze en columnas"),
+#                     addCleaners = TRUE)
+# }
+#
+# shinyApp(ui, server)
+# #
