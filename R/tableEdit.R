@@ -210,8 +210,13 @@ tableEdit <- function(input, output, session,
                       selectColsLabel = "Select and Arrange Columns",
                       addRowFilters = FALSE,
                       filterRowsLabel = "Add filters",
+                      addCleaners = FALSE,
+                      cleanersLabel = "Cleaners",
                       addCtypes = FALSE,
-                      ctypesLabel = "Add column types"){
+                      ctypesLabel = "Add column types",
+                      ctypesOptions = c("Numerica", "Categórica", "Fecha",
+                                        "Porcentual", "Longitud", "Latitud",
+                                        "Lugar", "Código lugar", "Imágen")) {
 
   output$dataControls <- renderUI({
     if(is.null(inputData())) return()
