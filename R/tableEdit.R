@@ -42,9 +42,9 @@ tableEdit <- function(input, output, session,
                       cleanersLabel = "Cleaners",
                       addCtypes = FALSE,
                       ctypesLabel = "Add column types",
-                      ctypesOptions = c("Numerica", "Categórica", "Fecha",
-                                        "Porcentual", "Longitud", "Latitud",
-                                        "Lugar", "Código lugar", "Imágen")) {
+                      ctypesOptions = c("Numerica" = "Num", "Categórica" = "Cat", "Fecha" = "Dat",
+                                        "Longitud" = "Gln", "Latitud" = "Glt",
+                                        "Lugar" = "Gnm", "Código lugar" = "Gcd", "Imágen" = "Img")) {
 
   ns <- session$ns
   output$dataControls0 <- renderUI({
