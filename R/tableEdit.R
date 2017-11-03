@@ -230,10 +230,17 @@ tableEdit <- function(input, output, session,
                        p("Here goes the filters"))
     )
     ctypes <- list(
-      checkboxInput(ns("dataAddColTypes"), ctypesLabel),
-      conditionalPanel(paste0("input[['",ns("dataAddColTypes"),"']]"),
-                       p("Here goes the ctypes"))
+      checkboxInput(ns("dataAddColTypes"), ctypesLabel, value = input$dataAddColTypes),
+      conditionalPanel(paste0("input[['", ns("dataAddColTypes"), "']]"),
+                       p("Here goes the ctypes"),
+                       map(as.list(input$selectedCols),
+                           ~selectInput(paste0("ctp-", .x), label = .x, choices = ctypesOptions)))
     )
+    # ctypes <- list(
+    #   checkboxInput(ns("dataAddColTypes"), ctypesLabel),
+    #   conditionalPanel(paste0("input[['",ns("dataAddColTypes"),"']]"),
+    #                    p("Here goes the ctypes"))
+    # )
     if(!addColSelect) colSelect <- NULL
     if(!addRowFilters) rowFilters <- NULL
     if(!addCtypes) ctypes <- NULL
