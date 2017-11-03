@@ -75,7 +75,6 @@ tableEdit <- function(input, output, session,
     ctypes <- list(
       checkboxInput(ns("dataAddColTypes"), ctypesLabel, value = input$dataAddColTypes),
       conditionalPanel(paste0("input[['", ns("dataAddColTypes"), "']]"),
-                       p("Here goes the ctypes"),
                        map(as.list(input$selectedCols),
                            ~selectInput(paste0("ctp-", .x), label = .x, choices = ctypesOptions)))
     )
