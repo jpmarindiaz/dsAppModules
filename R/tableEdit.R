@@ -41,6 +41,7 @@ tableEdit <- function(input, output, session,
                       addCleaners = FALSE,
                       cleanersLabel = "Cleaners",
                       addCtypes = FALSE,
+                      permanentCtypes = FALSE,
                       ctypesLabel = "Add column types",
                       ctypesOptions = c("Numerica" = "Num", "Categórica" = "Cat", "Fecha" = "Dat",
                                         "Longitud" = "Gln", "Latitud" = "Glt",
@@ -72,12 +73,20 @@ tableEdit <- function(input, output, session,
       conditionalPanel(paste0("input[['", ns("dataAddFilters"), "']]"),
                        p("Here goes the filters"))
     )
-    ctypes <- list(
-      checkboxInput(ns("dataAddColTypes"), ctypesLabel, value = input$dataAddColTypes),
-      conditionalPanel(paste0("input[['", ns("dataAddColTypes"), "']]"),
-                       map(as.list(input$selectedCols),
-                           ~selectInput(paste0("ctp-", .x), label = .x, choices = ctypesOptions)))
-    )
+    if (permanentCtypes) {
+      ctypes <- list(
+        strong(ctypesLabel),
+        map(as.list(input$selectedCols),
+            ~selectInput(paste0("ctp-", .x), label = .x, choices = ctypesOptions))
+      )
+    } else {
+      ctypes <- list(
+        checkboxInput(ns("dataAddColTypes"), ctypesLabel, value = input$dataAddColTypes),
+        conditionalPanel(paste0("input[['", ns("dataAddColTypes"), "']]"),
+                         map(as.list(input$selectedCols),
+                             ~selectInput(paste0("ctp-", .x), label = .x, choices = ctypesOptions)))
+      )
+    }
     if (!addRowFilters) rowFilters <- NULL
     if (!addCtypes) ctypes <- NULL
     if (!addCleaners) cleaners <- NULL
