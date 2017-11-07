@@ -76,6 +76,7 @@ tableEdit <- function(input, output, session,
     if (permanentCtypes) {
       ctypes <- list(
         strong(ctypesLabel),
+        br(),
         map(as.list(input$selectedCols),
             ~selectInput(paste0("ctp-", .x), label = .x, choices = ctypesOptions))
       )
