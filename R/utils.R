@@ -6,3 +6,8 @@ is.reactive <- function(obj){
 getUrlParameters <- function(session = session) {
   parseQueryString(session$clientData$url_search)
 }
+
+file_ext <- function (x) {
+  sub(".*([.*])", "\\1", basename(x))
+}
+
