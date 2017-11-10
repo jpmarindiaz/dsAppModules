@@ -8,6 +8,7 @@ library(DT)
 
 
 ui <- fluidPage(
+  useShinyjs(),
   selectizeInput("data","Data", c("cars","mtcars")),
   downloadHtmlwidgetUI("download", "Iris"),
   downloadHtmlwidgetUI("download2", "cars or mtcars"),
@@ -25,8 +26,10 @@ server <- function(input,output,session){
       return(DT::datatable(mtcars))
   })
 
-  callModule(downloadHtmlwidget,"download", widget)
-  callModule(downloadHtmlwidget,"download2", wdata)
+  inputDataName <- reactive(input$data)
+
+  callModule(downloadHtmlwidget,"download", widget = widget)
+  callModule(downloadHtmlwidget,"download2", widget = wdata, name = inputDataName)
   output$debug <- renderPrint({
     wdata()
   })
